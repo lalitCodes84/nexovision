@@ -1,6 +1,7 @@
 import { MongoClient, type Db } from "mongodb";
 
 const uri = process.env.MONGODB_URI;
+console.log("Error",uri)
 const dbName = process.env.MONGODB_DB ?? "nexovision";
 
 if (!uri) {
