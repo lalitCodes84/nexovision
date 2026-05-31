@@ -25,7 +25,16 @@ export async function GET(req: Request) {
     const status = url.searchParams.get("status");
 
     const db = await getDb();
-    const filter = status ? { status } : {};
+    const filter: Partial<InquiryRecord> = {};
+
+if (
+  status === "new" ||
+  status === "contacted" ||
+  status === "won" ||
+  status === "lost"
+) {
+  filter.status = status;
+}
     const inquiries = await db
       .collection<InquiryRecord>("inquiries")
       .find(filter)
